@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Raat Ki Sawari</title>
+
+<style>
+
+/* ===============================
+   RESET
+=============================== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
+}
+
+html,body{
+  height:100%;
+  overflow:hidden;
+  background:#000;
+}
+
+
+/* ===============================
+   CONTAINER
+=============================== */
+.container{
+  height:calc(var(--vh) * 100);
+  overflow:hidden;
+}
+
+
+/* ===============================
+   SCENES
+=============================== */
+.scene,
+.textScene div{
+  font-size:32px;
+  font-weight:bold;
+  letter-spacing:2px;
+  color:#fff;
+
+  background:rgba(0,0,0,0.4);
+  padding:15px 25px;
+  border-radius:12px;
+
+  backdrop-filter:blur(6px);
+}
+
+
+/* ===============================
+   IMAGE
+=============================== */
+.scene img{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  top:0;
+  left:0;
+}
+
+
+/* ===============================
+   OVERLAY
+=============================== */
+.overlay{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+
+  padding:15px;
+
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,.95),
+    rgba(0,0,0,0)
+  );
+
+  color:white;
+
+  max-height:65%;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
+
+/* ===============================
+   STORY TEXT
+=============================== */
+.storyText{
+  font-size:20px;
+  line-height:1.6;
+  word-break:break-word;
+
+  background:rgba(0,0,0,0.45);
+  padding:12px;
+  border-radius:12px;
+
+  backdrop-filter:blur(6px);
+}
+
+
+/* ===============================
+   CHARACTERS
+=============================== */
+.narrator,
+.nisha,
+.biker{
+  display:inline-block;
+  padding:2px 8px;
+  border-radius:6px;
+  font-weight:bold;
+  color:#111;
+  margin-bottom:6px;
+}
+
+.narrator{ background:#facc15; }
+.nisha{ background:#ec4899; }
+.biker{ background:#3b82f6; }
+
+
+/* ===============================
+   TOP UI
+=============================== */
+.progress{
+  position:fixed;
+  top:10px;
+  right:10px;
+  background:#2B2A2A;
+  color:white;
+  padding:6px 10px;
+  border-radius:14px;
+  z-index:999;
+  font-size:12px;
+}
+
+.title{
+  position:fixed;
+  top:5px;
+  left:8px;
+  background:rgba(0,0,0,.7);
+  color:white;
+  padding:6px 10px;
+  border-radius:14px;
+  z-index:999;
+  font-size:12px;
+}
+
+
+/* ===============================
+   SAVE / LOAD BUTTONS (ONLY ONE TIME)
+=============================== */
+#saveBtn, #loadBtn{
+  position:fixed;
+  left:8px;
+  padding:6px 10px;
+  border:none;
+  border-radius:8px;
+  color:white;
+  font-weight:bold;
+  z-index:9999;
+  font-size:11px;
+}
+
+#saveBtn{
+  top:45px;
+  background:#22c55e;
+}
+
+#loadBtn{
+  top:85px;
+  background:#3b82f6;
+}
+
+
+/* ===============================
+   MOBILE
+=============================== */
+@media (max-width:480px){
+  .storyText{
+    font-size:18px;
+  }
+
+  .textScene{
+    font-size:22px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<div class="title">
+🌙 Raat Ki Sawari
+</div>
+
+<button id="saveBtn">💾 Save Story</button>
+<button id="loadBtn">📖 Load Story</button>
+
+<div class="progress">
+Scene <span id="sceneNumber">1</span>/7
+</div>
+
+<div class="container" id="container">
+
+<section class="scene">
+<img src="1.jpg">
+<div class="overlay">
+<div class="storyText">
+<span class="narrator">Narrator:</span>
+Raat ke 8 baje the. Nisha office se ghar laut rahi thi.
+Bazaar ki galiyan dheere dheere khaali ho rahi thi.
+<br><br>
+
+<span class="nisha">Nisha:</span>
+"Aaj bahut thak gayi hoon... bas jaldi ghar pahunch jaun."
+</div>
+</div>
+</section>
+
+<section class="scene">
+<img src="1.jpg">
+<div class="overlay">
+<div class="storyText">
+<span class="narrator">Narrator:</span>
+Raat ke 8 baje the. Nisha office se ghar laut rahi thi.
+Bazaar ki galiyan dheere dheere khaali ho rahi thi.
+<br><br>
+
+<span class="nisha">Nisha:</span>
+"Aaj bahut thak gayi hoon... bas jaldi ghar pahunch jaun."
+</div>
+</div>
+</section>
+
+
+<section class="scene">
+<img src="2.jpg">
+<div class="overlay">
+<div class="storyText">
+
+<span class="narrator">Narrator:</span>
+Achanak ek motorcycle uske paas aakar rukti hai.
+Rider use dekhkar halka sa muskuraata hai.
+<br><br>
+
+<span class="biker">Biker:</span>
+"Excuse me... kya tum yahin aas-paas rehti ho?"
+<br><br>
+
+<span class="nisha">Nisha:</span>
+"Haan... lekin aap kaun ho?"
+</div>
+</div>
+</section>
+
+
+
+<section class="scene">
+<img src="3.jpg">
+<div class="overlay">
+<div class="storyText">
+
+<span class="narrator">Narrator:</span>
+Us aadmi ki aankhon mein kuch ajeeb tha.
+Nisha ko ek pal ke liye darr mehsoos hua.
+<br><br>
+
+<span class="nisha">Nisha:</span>
+"Pata nahi kyun... mujhe thoda ajeeb lag raha hai."
+<br><br>
+
+<span class="biker">Biker:</span>
+"Darne ki zarurat nahi hai. Mera naam Arjun hai."
+</div>
+</div>
+</section>
+
+
+<section class="scene">
+<img src="4.jpg">
+<div class="overlay">
+<div class="storyText">
+
+<span class="narrator">Narrator:</span>
+Phir bhi pata nahi kyun, Nisha uski baaton par muskura deti hai.
+<br><br>
+
+<span class="biker">Biker:</span>
+"Waise tumhari smile bahut khoobsurat hai."
+<br><br>
+
+<span class="nisha">Nisha:</span>
+"Haha... pehli baar mile ho aur itni tareef?"
+</div>
+</div>
+</section>
+
+
+
+<section class="scene">
+<img src="5.jpg">
+<div class="overlay">
+<div class="storyText">
+
+<span class="narrator">Narrator:</span>
+Kuch hi der baad dono bike par baithkar shehar ki roshniyon se door nikal padte hain.
+<br><br>
+
+<span class="biker">Biker:</span>
+"Tayyar ho? Ek yaadgaar ride ke liye?"
+<br><br>
+
+<span class="nisha">Nisha:</span>
+"Chalo... dekhte hain ye raat humein kahan le jaati hai."
+</div>
+</div>
+</section>
+
+
+<section class="textScene">
+<div>
+🌙 THE END 🌙
+</div>
+</section>
+
+</div>
+<script>
+
+const STORAGE_KEY = "kahanikart_manual_save";
+
+
+// ===============================
+// RESPONSIVE VH FIX
+// ===============================
+function setRealHeight(){
+  document.documentElement.style.setProperty(
+    '--vh',
+    `${window.innerHeight * 0.01}px`
+  );
+}
+setRealHeight();
+window.addEventListener('resize', setRealHeight);
+
+
+// ===============================
+// ELEMENTS
+// ===============================
+const scenes = document.querySelectorAll(".scene,.textScene");
+const sceneNumber = document.getElementById("sceneNumber");
+
+let currentScene = 0;
+let isAnimating = false;
+
+
+// ===============================
+// SHOW SCENE (MAIN ENGINE)
+// ===============================
+function showScene(index){
+
+  if(index < 0 || index >= scenes.length) return;
+
+  currentScene = index;
+
+  sceneNumber.textContent = currentScene + 1;
+
+  scenes[currentScene].scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+}
+
+
+// ===============================
+// NEXT / PREV (REELS STYLE)
+// ===============================
+function nextScene(){
+
+  if(isAnimating) return;
+  if(currentScene >= scenes.length - 1) return;
+
+  isAnimating = true;
+
+  showScene(currentScene + 1);
+
+  setTimeout(()=> isAnimating = false, 500);
+}
+
+function prevScene(){
+
+  if(isAnimating) return;
+  if(currentScene <= 0) return;
+
+  isAnimating = true;
+
+  showScene(currentScene - 1);
+
+  setTimeout(()=> isAnimating = false, 500);
+}
+
+
+// ===============================
+// WHEEL CONTROL
+// ===============================
+window.addEventListener("wheel",(e)=>{
+
+  e.preventDefault();
+
+  if(e.deltaY > 0){
+    nextScene();
+  } else {
+    prevScene();
+  }
+
+},{passive:false});
+
+
+// ===============================
+// TOUCH CONTROL
+// ===============================
+let startY = 0;
+
+window.addEventListener("touchstart",(e)=>{
+  startY = e.touches[0].clientY;
+},{passive:true});
+
+window.addEventListener("touchend",(e)=>{
+
+  if(isAnimating) return;
+
+  let endY = e.changedTouches[0].clientY;
+  let diff = startY - endY;
+
+  if(Math.abs(diff) < 50) return;
+
+  if(diff > 0){
+    nextScene();
+  } else {
+    prevScene();
+  }
+
+});
+
+
+// ===============================
+// INIT FIRST SCENE
+// ===============================
+window.addEventListener("load", ()=>{
+  showScene(0);
+});
+
+
+// ===============================
+// REMOVE OLD BUTTONS
+// ===============================
+document.getElementById("saveBtn")?.remove();
+document.getElementById("loadBtn")?.remove();
+
+
+// ===============================
+// SAVE BUTTON
+// ===============================
+const saveBtn = document.createElement("button");
+saveBtn.id = "saveBtn";
+saveBtn.innerText = "💾 Save";
+document.body.appendChild(saveBtn);
+
+
+// ===============================
+// LOAD BUTTON
+// ===============================
+const loadBtn = document.createElement("button");
+loadBtn.id = "loadBtn";
+loadBtn.innerText = "📖 Load";
+document.body.appendChild(loadBtn);
+
+
+// ===============================
+// SAVE
+// ===============================
+saveBtn.addEventListener("click", ()=>{
+
+  const data = {
+    gameId: "raat-ki-sawari",
+    scene: currentScene
+  };
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+  alert("Saved Scene " + (currentScene + 1));
+});
+
+
+// ===============================
+// LOAD
+// ===============================
+loadBtn.addEventListener("click", ()=>{
+
+  const raw = localStorage.getItem(STORAGE_KEY);
+
+  if(!raw){
+    alert("No save found!");
+    return;
+  }
+
+  const data = JSON.parse(raw);
+
+  if(data.gameId === "raat-ki-sawari"){
+    showScene(data.scene || 0);
+  }
+
+});
+
+</script>
+
+
+<audio id="bgm" loop></audio>
+
+</body>
+</html>
